@@ -13,6 +13,7 @@ dependencies {
 
 application {
     mainClass.set("org.example.App")
+    mainClass.set("com.microsoft.playwright.CLI")
 }
 
 // Usage: ./gradlew playwright --args="help"
@@ -26,4 +27,10 @@ tasks.test {
     testLogging {
         events("passed", "skipped", "failed")
     }
+}
+
+tasks.register<JavaExec>("playwrightRun") {
+    classpath = sourceSets.main.get().runtimeClasspath
+    mainClass.set("com.microsoft.playwright.CLI")
+    args = project.findProperty("args")?.toString()?.split(' ') ?: listOf()
 }
