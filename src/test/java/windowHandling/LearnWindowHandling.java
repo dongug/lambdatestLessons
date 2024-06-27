@@ -27,10 +27,10 @@ public class LearnWindowHandling {
         popup.close();
 
         Page tabs = page.waitForPopup(new Page.WaitForPopupOptions().setPredicate(
-                        p-> p.context().pages().size() == 3),
+                p-> p.context().pages().size() == 3),
                 ()->{
-                    page.getByText("Follow All").click();
-                });
+            page.getByText("Follow All").click();
+        });
         List<Page> pages = tabs.context().pages();
         System.out.println(pages.size());
         pages.forEach(tab->{
